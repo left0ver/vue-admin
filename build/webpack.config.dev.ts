@@ -23,6 +23,8 @@ const devConfig: webpack.Configuration = {
     static: {
       directory: path.join(__dirname, '../', 'dist'),
     },
+    // 解决开发环境下history模式刷新404问题
+    historyApiFallback: true,
     compress: true,
     port: 9000,
     hot: true,

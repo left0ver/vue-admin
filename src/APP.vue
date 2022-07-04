@@ -4,6 +4,7 @@
       {{ name }}
     </h1>
     <img :src="img" alt="" srcset="" hh="112" />
+    <RouterView></RouterView>
   </div>
 </template>
 <script lang="ts">
