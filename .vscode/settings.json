@@ -15,7 +15,7 @@
   // },
   // 对less，css，scss文件进行检查
   "stylelint.enable": true,
-  "stylelint.validate": ["css", "less", "postcss", "scss", "sass"],
+  "stylelint.validate": ["css", "less", "postcss", "vue", "scss", "sass"],
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
