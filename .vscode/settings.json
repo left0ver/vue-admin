@@ -5,9 +5,21 @@
   "editor.formatOnType": true,
   // 保存之后eslint和stylelint会自动fix
   "editor.codeActionsOnSave": {
+    "source.fixAll": true,
     "source.fixAll.eslint": true,
     "source.fixAll.stylelint": true
   },
+  "eslint.validate": ["javascript", "vue", "html"],
+  // "[vue]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // },
   // 对less，css，scss文件进行检查
-  "stylelint.validate": ["less", "css", "scss"]
+  "stylelint.enable": true,
+  "stylelint.validate": ["css", "less", "postcss", "scss", "sass"],
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

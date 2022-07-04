@@ -1,9 +1,9 @@
 <template>
   <div>
     <h1 class="hh">
-      {{name}}
+      {{ name }}
     </h1>
-    <img :src="img" alt="" srcset="" />
+    <img :src="img" alt="" srcset="" hh="112" />
   </div>
 </template>
 <script lang="ts">
@@ -17,7 +17,7 @@ export default defineComponent({
       name: 'Hello World!',
     }
   },
-});
+})
 </script>
 
 <style>
@@ -27,9 +27,10 @@ h1 {
 }
 </style>
 <style lang="less">
-@import  "@/index.less";
+@import "@/index.less";
 @primary-color: white;
 @bg: black;
+
 h1 {
   color: @primary-color;
   background-color: @bg;
