@@ -6,7 +6,9 @@ const dllPath = 'public/dll'
 const dllConfig: webpack.Configuration = {
   mode: 'production',
   entry: {
-    vue: ['vue', 'vue-router', 'pinia'],
+    // 可以根据需要添加对应的库，这样有利于提高构建速度，添加或者删除之后重新运行yarn dll,
+    vue: ['vue', 'pinia'],
+    vue_router: ['vue-router'],
   },
   output: {
     publicPath: './',

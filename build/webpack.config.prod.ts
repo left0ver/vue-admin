@@ -3,20 +3,26 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import path from 'path'
 import AddAssetHtmlWebpackPlugin from 'add-asset-html-webpack-plugin'
-// import fs from 'fs'
+import fs from 'fs'
 
-// function getFiles() {
-//   const dllFiles: string[] = []
-//   const files = fs.readdirSync(path.resolve(__dirname, '../public/dll'))
-//   for (let i = 0; i < files.length; i++) {
-//     if (/\.js$/.test(files[i])) {
-//       dllFiles.push(files[i])
-//     }
-//   }
-//   return dllFiles
-// }
-// getFiles()
 const dllPath = 'public/dll'
+function addDllToHtml() {
+  const dllFiles: AddAssetHtmlWebpackPlugin[] = []
+  const files = fs.readdirSync(path.resolve(__dirname, '../public/dll'))
+  for (let i = 0; i < files.length; ) {
+    if (/\.js$/.test(files[i])) {
+      dllFiles.push(
+        new AddAssetHtmlWebpackPlugin({
+          filepath: path.resolve(__dirname, '../', dllPath, files[i]),
+          outputPath: 'dll',
+          publicPath: 'dll',
+        }),
+      )
+    }
+    i += 1
+  }
+  return dllFiles
+}
 const prodConfig: webpack.Configuration = {
   mode: 'production',
   output: {
@@ -46,12 +52,7 @@ const prodConfig: webpack.Configuration = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
-    new AddAssetHtmlWebpackPlugin({
-      // filepath: path.resolve(__dirname, '../', dllPath, 'vue.dll.js'),
-      filepath: path.resolve(__dirname, '../', dllPath, 'vue.dll.js'),
-      outputPath: 'dll',
-      publicPath: 'dll',
-    }),
+    ...addDllToHtml(),
   ],
   optimization: {
     minimize: true,

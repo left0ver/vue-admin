@@ -91,6 +91,7 @@ const baseConfig: webpack.Configuration = {
       filename: path.resolve(__dirname, '../dist', 'index.html'),
       // 网站title
       title: 'vue-admin',
+      // 你可以将minify 设置为true，将会压缩打包之后的html文件
       minify: false,
       inject: 'body',
       template: path.resolve(__dirname, '../public', 'index.html'),
@@ -99,24 +100,9 @@ const baseConfig: webpack.Configuration = {
     new VueLoaderPlugin(),
     // 显示打包进度
     new ProgressPlugin(),
-
-    // new webpack.DllPlugin({
-    //   name: '[name]_[hash]',
-    //   path: path.resolve(__dirname, '../public/dll/manifest.json'),
-    // }),
-    // new webpack.DllReferencePlugin({
-    //   manifest: path.resolve(__dirname, 'dll/manifest.json'),
-    // }),
     new webpack.DllReferencePlugin({
       manifest: path.resolve(__dirname, '../', dllPath, 'vue-manifest.json'),
     }),
-    // new AddAssetHtmlWebpackPlugin({
-    //   filepath: path.resolve(__dirname, '../', dllPath, 'vue.dll.js'),
-    // }),
-    // new webpack.DllReferencePlugin({
-    //   manifest: path.resolve(__dirname, '../', dllPath, 'pinia-manifest.json'),
-    // }),
-    // 将某个文件打包输出去，并在html中自动引入该资源
   ],
 }
 
