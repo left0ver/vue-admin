@@ -1,5 +1,4 @@
 import webpack from 'webpack'
-import path from 'path'
 import 'webpack-dev-server'
 
 const devConfig: webpack.Configuration = {
@@ -20,9 +19,10 @@ const devConfig: webpack.Configuration = {
     },
   },
   devServer: {
-    static: {
-      directory: path.join(__dirname, '../', 'dist'),
-    },
+    // static: {
+    //   // directory: path.resolve(__dirname, '../public/dll'),
+    //   // publicPath: '/',
+    // },
     // 解决开发环境下history模式刷新404问题
     historyApiFallback: true,
     compress: true,

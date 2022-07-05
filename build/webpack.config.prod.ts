@@ -1,7 +1,22 @@
 import webpack from 'webpack'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import path from 'path'
+import AddAssetHtmlWebpackPlugin from 'add-asset-html-webpack-plugin'
+// import fs from 'fs'
 
+// function getFiles() {
+//   const dllFiles: string[] = []
+//   const files = fs.readdirSync(path.resolve(__dirname, '../public/dll'))
+//   for (let i = 0; i < files.length; i++) {
+//     if (/\.js$/.test(files[i])) {
+//       dllFiles.push(files[i])
+//     }
+//   }
+//   return dllFiles
+// }
+// getFiles()
+const dllPath = 'public/dll'
 const prodConfig: webpack.Configuration = {
   mode: 'production',
   output: {
@@ -30,6 +45,12 @@ const prodConfig: webpack.Configuration = {
     // 对css优化(
     new MiniCssExtractPlugin({
       filename: '[name].css',
+    }),
+    new AddAssetHtmlWebpackPlugin({
+      // filepath: path.resolve(__dirname, '../', dllPath, 'vue.dll.js'),
+      filepath: path.resolve(__dirname, '../', dllPath, 'vue.dll.js'),
+      outputPath: 'dll',
+      publicPath: 'dll',
     }),
   ],
   optimization: {

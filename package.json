@@ -18,7 +18,8 @@
     "build": "cross-env NODE_ENV=production webpack --config build/webpack.config.ts",
     "serve": "cross-env NODE_ENV=development webpack serve --config build/webpack.config.ts",
     "dev": "cross-env NODE_ENV=development webpack serve --config build/webpack.config.ts",
-    "watch": "cross-env NODE_ENV=development webpack --config build/webpack.config.ts"
+    "watch": "cross-env NODE_ENV=development webpack --config build/webpack.config.ts",
+    "dll": "webpack --config build/webpack.config.dll.ts"
   },
   "repository": {
     "type": "git",
@@ -43,7 +44,9 @@
     "@typescript-eslint/eslint-plugin": "^5.30.3",
     "@typescript-eslint/parser": "^5.30.3",
     "@vue/compiler-sfc": "^3.2.37",
+    "add-asset-html-webpack-plugin": "^5.0.2",
     "babel-loader": "^8.2.5",
+    "clean-webpack-plugin": "^4.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "eslint": "^7.32.0 || ^8.2.0",

@@ -3,6 +3,7 @@ import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { VueLoaderPlugin } from 'vue-loader'
 
+const dllPath = 'public/dll'
 const baseConfig: webpack.Configuration = {
   entry: path.resolve(__dirname, '../src', 'main.ts'),
   // target: 'browserslist',
@@ -94,9 +95,28 @@ const baseConfig: webpack.Configuration = {
       inject: 'body',
       template: path.resolve(__dirname, '../public', 'index.html'),
     }),
+
     new VueLoaderPlugin(),
     // 显示打包进度
     new ProgressPlugin(),
+
+    // new webpack.DllPlugin({
+    //   name: '[name]_[hash]',
+    //   path: path.resolve(__dirname, '../public/dll/manifest.json'),
+    // }),
+    // new webpack.DllReferencePlugin({
+    //   manifest: path.resolve(__dirname, 'dll/manifest.json'),
+    // }),
+    new webpack.DllReferencePlugin({
+      manifest: path.resolve(__dirname, '../', dllPath, 'vue-manifest.json'),
+    }),
+    // new AddAssetHtmlWebpackPlugin({
+    //   filepath: path.resolve(__dirname, '../', dllPath, 'vue.dll.js'),
+    // }),
+    // new webpack.DllReferencePlugin({
+    //   manifest: path.resolve(__dirname, '../', dllPath, 'pinia-manifest.json'),
+    // }),
+    // 将某个文件打包输出去，并在html中自动引入该资源
   ],
 }
 
