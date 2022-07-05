@@ -92,6 +92,7 @@
   },
   "dependencies": {
     "core-js": "3",
+    "dotenv": "^16.0.1",
     "pinia": "^2.0.14",
     "vue": "^3.2.36",
     "vue-router": "4"

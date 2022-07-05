@@ -6,3 +6,4 @@
 *.less     eol=lf
 *.css     eol=lf
 *.html     eol=lf
+*.env     eol=lf
