@@ -14,12 +14,6 @@ import { ElInput } from 'element-plus'
 const username = ref("")
 const password = ref("")
 </script>
-
-<style lang="less">
-.login-form /deep/ .el-input__inner {
-  width: 150px;
-}
-</style>
 <style lang="less" scoped>
 /deep/ .login-form {
   width: 150px;

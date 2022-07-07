@@ -62,7 +62,7 @@ const prodConfig: webpack.Configuration = {
     runtimeChunk: 'single',
     providedExports: true,
     sideEffects: true,
-    usedExports: false,
+    usedExports: true,
     moduleIds: 'deterministic',
     splitChunks: {
       chunks: 'all',
