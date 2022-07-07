@@ -1,8 +1,14 @@
 <template>
-  <div>login</div>
+  <div>
+    <div>
+      <el-button type="primary">hhh</el-button>
+    </div>
+  </div>
 </template>
 
-<script setup></script>
+<script lang="ts" setup>
+import { ElButton } from 'element-plus'
+</script>
 
 <style lang="less" scoped>
 .gg {

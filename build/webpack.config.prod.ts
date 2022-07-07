@@ -43,6 +43,9 @@ const prodConfig: webpack.Configuration = {
   plugins: [
     // 具体配置查看https://github.com/webpack-contrib/webpack-bundle-analyzer#size-definitions
     // 打包分析
+    new webpack.DllReferencePlugin({
+      manifest: path.resolve(__dirname, '../', dllPath, 'vue-manifest.json'),
+    }),
     new BundleAnalyzerPlugin({
       analyzerPort: 8888,
       // 使用static，打包之后将会在dist文件夹中生成report.html

@@ -92,7 +92,7 @@ const baseConfig: webpack.Configuration = {
       // 网站title
       title: 'vue-admin',
       // 你可以将minify 设置为true，将会压缩打包之后的html文件
-      minify: false,
+      minify: true,
       inject: 'body',
       template: path.resolve(__dirname, '../public', 'index.html'),
     }),
