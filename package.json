@@ -7,7 +7,7 @@
     "*.css",
     "*.less",
     "*.scss",
-    "*vue"
+    "*.vue"
   ],
   "husky": {
     "hooks": {
