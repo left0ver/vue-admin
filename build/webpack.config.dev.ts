@@ -27,7 +27,7 @@ const devConfig: webpack.Configuration = {
     historyApiFallback: true,
     compress: true,
     port: 9000,
-    hot: false,
+    hot: true,
     host: 'localhost',
     open: true,
     // 设置代理

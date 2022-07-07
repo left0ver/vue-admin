@@ -1,17 +1,27 @@
 <template>
   <div>
-    <div>
-      <el-button type="primary">hhh</el-button>
+    <div class="login-form">
+      <el-input autofocus v-model="username"></el-input>
+      <el-input show-password v-model="password"></el-input>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ElButton } from 'element-plus'
+import {ref} from "vue"
+import { ElInput } from 'element-plus'
+
+const username = ref("")
+const password = ref("")
 </script>
 
+<style lang="less">
+.login-form /deep/ .el-input__inner {
+  width: 150px;
+}
+</style>
 <style lang="less" scoped>
-.gg {
-  color: #f00
+/deep/ .login-form {
+  width: 150px;
 }
 </style>
