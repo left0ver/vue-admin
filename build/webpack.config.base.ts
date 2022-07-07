@@ -101,6 +101,9 @@ const baseConfig: webpack.Configuration = {
     // 显示打包进度
     new ProgressPlugin(),
   ],
+  optimization: {
+    sideEffects: false,
+  },
 }
 
 export default baseConfig
