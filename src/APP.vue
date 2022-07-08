@@ -13,5 +13,7 @@ export default defineComponent({
   },
 })
 </script>
-
+<style>
+@import "@/styles/normalize.css";
+</style>
 <style lang="less"></style>

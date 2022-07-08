@@ -93,10 +93,15 @@
     "*.{vue,ts,less,md,json}": "prettier --write"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.0.6",
+    "@vueuse/core": "^8.9.1",
+    "axios": "^0.27.2",
     "core-js": "3",
     "dotenv": "^16.0.1",
     "element-plus": "^2.2.8",
+    "particles.vue3": "^2.1.3",
     "pinia": "^2.0.14",
+    "tsparticles": "^2.1.3",
     "vue": "^3.2.36",
     "vue-router": "4"
   }

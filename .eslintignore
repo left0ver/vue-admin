@@ -2,3 +2,4 @@ node_modules
 dist
 .stylelintrc
 public/dll/*
+style/normalize.css
