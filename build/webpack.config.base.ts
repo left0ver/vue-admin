@@ -4,6 +4,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { VueLoaderPlugin } from 'vue-loader'
 import ElementPlus from 'unplugin-element-plus/webpack'
 
+const dllPath = 'public/dll'
 const baseConfig: webpack.Configuration = {
   entry: path.resolve(__dirname, '../src', 'main.ts'),
   // target: 'browserslist',
@@ -100,6 +101,9 @@ const baseConfig: webpack.Configuration = {
     new VueLoaderPlugin(),
     // 显示打包进度
     new ProgressPlugin(),
+    new webpack.DllReferencePlugin({
+      manifest: path.resolve(__dirname, '../', dllPath, 'vue-manifest.json'),
+    }),
   ],
 }
 
