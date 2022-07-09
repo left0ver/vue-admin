@@ -8,7 +8,9 @@ module.exports = {
     'stylelint-config-prettier',
   ],
   plugins: ['stylelint-selector-no-empty'],
-  rules: { 'plugin/stylelint-selector-no-empty': true },
+  rules: {
+    'plugin/stylelint-selector-no-empty': true,
+  },
   // 使用postcss-less对less文件进行转换,让stylelint能lint less文件,
   // 这里使用overrides只对less文件使用post- less, 否则lint   .vue文件时会报错
   overrides: [
