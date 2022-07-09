@@ -9,7 +9,7 @@
     "source.fixAll.eslint": true,
     "source.fixAll.stylelint": true
   },
-  "eslint.validate": ["javascript", "vue", "html"],
+  "eslint.validate": ["javascript", "vue", "html", "typescript"],
   // "[vue]": {
   //   "editor.defaultFormatter": "esbenp.prettier-vscode"
   // },
