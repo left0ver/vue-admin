@@ -22,6 +22,10 @@
           </template>
         </el-input>
       </div>
+      <div class="other-link">
+        <div class="register" @click="toRegister">注册</div>
+        <div class="forget-password" @click="toForgetPassword">忘记密码</div>
+      </div>
       <div>
         <el-button type="primary" size="large" round>登录</el-button>
       </div>
@@ -31,12 +35,20 @@
 
 <script lang="ts" setup>
 import {ref} from "vue"
-import { ElInput,ElIcon,ElButton } from 'element-plus'
+import { ElInput, ElIcon, ElButton } from 'element-plus'
+import {useRouter} from "vue-router"
 import ToggleDark from "@/components/ToggleDark.vue"
 import MyParticles from "@/components/MyParticles.vue"
 
+const router =useRouter()
 const username = ref("")
 const password = ref("")
+const toRegister = () => {
+  router.push("/register")
+}
+const toForgetPassword = () => {
+  router.push("/forget")
+}
 </script>
 <style lang="less" scoped>
 /deep/ .el-input {
@@ -63,10 +75,20 @@ const password = ref("")
     font-size: 20px;
   }
   .login-form-username {
-    margin-bottom:15px;
+    margin-bottom:20px;
   }
   .login-form-password {
-    margin-bottom:15px;
+    margin-bottom:20px;
+  }
+  .other-link {
+    display:flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    color:#29B6F6;
+    > div {
+      cursor: pointer;
+    }
+
   }
 }
 </style>
