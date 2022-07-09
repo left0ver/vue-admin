@@ -34,9 +34,10 @@
 </template>
 
 <script lang="ts" setup>
-import {ref} from "vue"
+import {ref,onMounted} from "vue"
 import { ElInput, ElIcon, ElButton } from 'element-plus'
-import {useRouter} from "vue-router"
+import { useRouter } from "vue-router"
+import request from "@/utils/request"
 import ToggleDark from "@/components/ToggleDark.vue"
 import MyParticles from "@/components/MyParticles.vue"
 
@@ -49,6 +50,11 @@ const toRegister = () => {
 const toForgetPassword = () => {
   router.push("/forget")
 }
+onMounted(() => {
+  request.get("/vue-admin/login").then((res) => {
+  console.log(res)
+})
+})
 </script>
 <style lang="less" scoped>
 /deep/ .el-input {

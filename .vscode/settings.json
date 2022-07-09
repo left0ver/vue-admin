@@ -10,9 +10,6 @@
     "source.fixAll.stylelint": true
   },
   "eslint.validate": ["javascript", "vue", "html", "typescript"],
-  // "[vue]": {
-  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
-  // },
   // 对less，css，scss文件进行检查
   "stylelint.enable": true,
   "stylelint.validate": ["css", "less", "postcss", "vue", "scss", "sass"],
@@ -20,6 +17,9 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

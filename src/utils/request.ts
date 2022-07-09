@@ -1,9 +1,26 @@
 import axios from 'axios'
-import isDev from '@/utils/isDev'
-import { devEnv, prodEnv } from './env'
 
-const request = axios.create({
-  baseURL: isDev ? devEnv.BASE_URL : prodEnv.BASE_URL,
+const service = axios.create({
+  // 你自己开发的时候可以设置baseUrl
+  // baseURL: process.env.BASE_URL,
   timeout: 5000,
 })
-export default request
+
+service.interceptors.request.use(
+  config => {
+    return config
+  },
+  error => {
+    console.log(error)
+  },
+)
+
+service.interceptors.response.use(
+  res => {
+    return res.data
+  },
+  error => {
+    console.log(error)
+  },
+)
+export default service
