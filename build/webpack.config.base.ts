@@ -3,6 +3,7 @@ import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { VueLoaderPlugin } from 'vue-loader'
 import ElementPlus from 'unplugin-element-plus/webpack'
+import Dotenv from 'dotenv-webpack'
 
 const baseConfig: webpack.Configuration = {
   entry: path.resolve(__dirname, '../src', 'main.ts'),
@@ -100,6 +101,8 @@ const baseConfig: webpack.Configuration = {
     new VueLoaderPlugin(),
     // 显示打包进度
     new ProgressPlugin(),
+    // 通用的环境变量，在.env文件中配置,使用process.env.your_env_variable来访问
+    new Dotenv(),
   ],
 }
 

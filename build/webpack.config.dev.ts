@@ -1,5 +1,8 @@
 import webpack from 'webpack'
 import 'webpack-dev-server'
+import Dotenv from 'dotenv-webpack'
+import path from 'path'
+import setupMockServer from '../mock/server'
 
 const devConfig: webpack.Configuration = {
   mode: 'development',
@@ -34,10 +37,18 @@ const devConfig: webpack.Configuration = {
     // proxy: {
     //   '/api': 'http://localhost:3000',
     // },
+    // 使用mock的数据,当你自己开发时，移除此配置项
+    setupMiddlewares: setupMockServer,
   },
   devtool: 'eval-cheap-source-map',
   optimization: {
     minimize: false,
   },
+  plugins: [
+    // 开发环境下的环境变量，在.development.env中配置
+    new Dotenv({
+      path: path.resolve(__dirname, '../.development.env'),
+    }),
+  ],
 }
 export default devConfig

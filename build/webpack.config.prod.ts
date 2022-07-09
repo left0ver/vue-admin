@@ -4,6 +4,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import path from 'path'
 import AddAssetHtmlWebpackPlugin from 'add-asset-html-webpack-plugin'
 import fs from 'fs'
+import Dotenv from 'dotenv-webpack'
 
 const dllPath = 'public/dll'
 function addDllToHtml() {
@@ -55,6 +56,7 @@ const prodConfig: webpack.Configuration = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
+    new Dotenv({ path: path.resolve(__dirname, '../.production.env') }),
     ...addDllToHtml(),
   ],
   optimization: {
