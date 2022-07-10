@@ -32,12 +32,7 @@
         v-model="checkPassword"></el-input>
     </div>
     <div class="other-link">
-      <div class="login-link" @click="()=>router.push('/login')">
-        <span>登录</span>
-        <span>
-          <el-icon style="vertical-align: middle"><ArrowRight /></el-icon
-        ></span>
-      </div>
+      <LoginLink />
     </div>
     <div class="register-btn">
       <el-button type="primary" size="large" round>注册</el-button>
@@ -46,14 +41,13 @@
 </template>
 
 <script setup lang="ts">
-import { ElInput, ElButton,ElIcon } from "element-plus"
-import { User, Lock,ArrowRight } from '@element-plus/icons-vue'
+import { ElInput, ElButton } from "element-plus"
+import { User, Lock, } from '@element-plus/icons-vue'
 import { ref } from "vue"
-import { useRouter } from "vue-router"
 import ToggleDark from "@/components/ToggleDark.vue"
 import MyParticles from "@/components/MyParticles.vue"
+import LoginLink from "@/components/LoginLink.vue"
 
-const router =useRouter()
 const username = ref("")
 const password = ref("")
 const checkPassword = ref("")
@@ -62,10 +56,6 @@ const checkPassword = ref("")
 <style lang="less" scoped>
 @import "@/styles/minix.less";
 @import "@/styles/element_ui.less";
-.el-button {
-  width: 100%;
-}
-
 .toggle-dark {
   .toggleDark();
 }
@@ -73,8 +63,7 @@ const checkPassword = ref("")
   position:absolute;
   top: 50%;
   right: 150px;
-  width: 250px;
-  height: 200px;
+  width: 400px;
   transform: translateY(-50%);
   > div {
     margin-bottom:20px;
@@ -92,10 +81,6 @@ const checkPassword = ref("")
   .other-link {
     display:flex;
     flex-direction: row-reverse;
-    color:#29B6F6;
-    .login-link {
-      cursor: pointer;
-    }
   }
 
   .register-btn {

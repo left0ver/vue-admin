@@ -2,33 +2,31 @@
   <div>
     <MyParticles />
   </div>
-  <div>
-    <div class="toggle-dark">
-      <ToggleDark />
+  <div class="toggle-dark">
+    <ToggleDark />
+  </div>
+  <div class="login-form">
+    <div class="login-text"><span>登录</span></div>
+    <div class="login-form-username">
+      <el-input autofocus v-model="username" clearable placeholder="用户名">
+        <template #prefix>
+          <el-icon><User /></el-icon>
+        </template>
+      </el-input>
     </div>
-    <div class="login-form">
-      <div class="login-text"><span>登录</span></div>
-      <div class="login-form-username">
-        <el-input autofocus v-model="username" clearable placeholder="用户名">
-          <template #prefix>
-            <el-icon><User /></el-icon>
-          </template>
-        </el-input>
-      </div>
-      <div class="login-form-password">
-        <el-input show-password v-model="password" clearable placeholder="密码">
-          <template #prefix>
-            <el-icon><Lock /></el-icon>
-          </template>
-        </el-input>
-      </div>
-      <div class="other-link">
-        <div class="register" @click="toRegister">注册</div>
-        <div class="forget-password" @click="toForgetPassword">忘记密码</div>
-      </div>
-      <div>
-        <el-button type="primary" size="large" round>登录</el-button>
-      </div>
+    <div class="login-form-password">
+      <el-input show-password v-model="password" clearable placeholder="密码">
+        <template #prefix>
+          <el-icon><Lock /></el-icon>
+        </template>
+      </el-input>
+    </div>
+    <div class="other-link">
+      <div class="register" @click="toRegister">注册</div>
+      <div class="forget-password" @click="toForgetPassword">忘记密码</div>
+    </div>
+    <div>
+      <el-button type="primary" size="large" round>登录</el-button>
     </div>
   </div>
 </template>
@@ -60,10 +58,6 @@ onMounted(() => {
 
 @import "@/styles/minix.less";
 @import "@/styles/element_ui.less";
-
-.el-button {
-  width: 100%;
-}
 .toggle-dark {
  .toggleDark();
 }
@@ -71,7 +65,7 @@ onMounted(() => {
   position:absolute;
   top: 50%;
   right: 150px;
-  width: 250px;
+  width: 400px;
   transform: translateY(-50%);
   .login-text {
     padding-bottom: 10px;
