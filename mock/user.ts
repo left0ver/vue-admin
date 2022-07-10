@@ -5,18 +5,18 @@ export const userInfo = Mock.mock([
     id: 1,
     username: 'leftover',
     name: '@first',
-    role: ['test'],
+    roles: ['test'],
   },
   {
     id: 2,
     username: 'admin',
     name: '@first',
-    role: ['admin'],
+    roles: ['admin'],
   },
   {
     id: 3,
     username: 'teacher',
     name: '@first',
-    role: ['teacher'],
+    roles: ['teacher'],
   },
 ])
