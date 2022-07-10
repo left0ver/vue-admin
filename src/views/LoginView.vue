@@ -3,20 +3,20 @@
     <MyParticles />
   </div>
   <div>
-    <div class="switch-dark">
+    <div class="toggle-dark">
       <ToggleDark />
     </div>
     <div class="login-form">
       <div class="login-text"><span>登录</span></div>
       <div class="login-form-username">
-        <el-input autofocus v-model="username" clearable>
+        <el-input autofocus v-model="username" clearable placeholder="用户名">
           <template #prefix>
             <el-icon><User /></el-icon>
           </template>
         </el-input>
       </div>
       <div class="login-form-password">
-        <el-input show-password v-model="password" clearable>
+        <el-input show-password v-model="password" clearable placeholder="密码">
           <template #prefix>
             <el-icon><Lock /></el-icon>
           </template>
@@ -57,28 +57,27 @@ onMounted(() => {
 })
 </script>
 <style lang="less" scoped>
-/deep/ .el-input {
-  height:40px;
-}
+
+@import "@/styles/minix.less";
+@import "@/styles/element_ui.less";
+
 .el-button {
   width: 100%;
 }
-.switch-dark {
-  display: flex;
-  flex-direction: row-reverse;
-  margin-right:50px
+.toggle-dark {
+ .toggleDark();
 }
  .login-form {
   position:absolute;
   top: 50%;
   right: 150px;
   width: 250px;
-  height: 200px;
   transform: translateY(-50%);
   .login-text {
     padding-bottom: 10px;
     font-weight: 500;
     font-size: 20px;
+    text-align: center;
   }
   .login-form-username {
     margin-bottom:20px;
