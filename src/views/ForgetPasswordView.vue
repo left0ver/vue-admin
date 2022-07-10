@@ -68,6 +68,7 @@ import { ref } from "vue"
 import ToggleDark from "@/components/ToggleDark.vue"
 import MyParticles from "@/components/MyParticles.vue"
 import LoginLink from "@/components/LoginLink.vue"
+import useSendCaptcha from "@/hooks/useSendCaptcha"
 
 const username = ref("")
 const phone = ref("")
@@ -75,19 +76,7 @@ const newPassword = ref("")
 const checkPassword = ref("")
 const isSend = ref(false)
 const captchaBtnText = ref("发送验证码")
-const sendCaptcha = () => {
-  isSend.value = true
-  let time = 60
-  const timer = setInterval(() => {
-    time--
-    captchaBtnText.value = `${time}s`
-    if (time === 0) {
-      captchaBtnText.value='发送验证码'
-      isSend.value = false
-      clearInterval(timer)
-    }
-  }, 1000)
-}
+ const sendCaptcha = useSendCaptcha(isSend,captchaBtnText)
 </script>
 
 <style lang="less" scoped>
