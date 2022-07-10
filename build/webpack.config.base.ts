@@ -46,8 +46,8 @@ const baseConfig: webpack.Configuration = {
                   importLoaders: 2,
                 },
               },
-              'less-loader',
               'postcss-loader',
+              'less-loader',
             ],
           },
           {
