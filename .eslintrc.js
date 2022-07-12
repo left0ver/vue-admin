@@ -19,6 +19,7 @@ module.exports = {
   },
   plugins: ['vue', '@typescript-eslint'],
   rules: {
+    'no-unused-expressions': 'off',
     'no-plusplus': 'off',
     semi: ['error', 'never'],
     'import/prefer-default-export': 'off',

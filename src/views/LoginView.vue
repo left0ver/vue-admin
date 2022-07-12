@@ -21,7 +21,7 @@
           :prefix-icon="User">
         </el-input>
       </el-form-item>
-      <el-form-item class="login-form-password" prop="password" required>
+      <el-form-item class="login-form-password" prop="password">
         <el-input
           type="password"
           v-model="loginForm.password"
@@ -58,8 +58,8 @@ import type { IUser } from '../../mock/type'
 
 const router = useRouter()
 const loginForm = reactive({
-  username: "",
-  password: "",
+  username: "leftover",
+  password: "123456",
 })
 const formRef = ref<FormInstance>()
 const login = (form: FormInstance | undefined) => {
