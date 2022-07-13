@@ -7,41 +7,87 @@
   </div>
   <div class="login-form">
     <div class="login-text"><span>登录</span></div>
-    <div class="login-form-username">
-      <el-input autofocus v-model="username" clearable placeholder="用户名">
-        <template #prefix>
-          <el-icon><User /></el-icon>
-        </template>
-      </el-input>
-    </div>
-    <div class="login-form-password">
-      <el-input show-password v-model="password" clearable placeholder="密码">
-        <template #prefix>
-          <el-icon><Lock /></el-icon>
-        </template>
-      </el-input>
-    </div>
+    <el-form
+      ref="formRef"
+      show-message
+      :model="loginForm"
+      status-icon
+      :rules="loginFormRules">
+      <el-form-item class="login-form-username" prop="username">
+        <el-input
+          autofocus
+          v-model="loginForm.username"
+          placeholder="用户名"
+          :prefix-icon="User">
+        </el-input>
+      </el-form-item>
+      <el-form-item class="login-form-password" prop="password">
+        <el-input
+          type="password"
+          v-model="loginForm.password"
+          placeholder="密码"
+          :prefix-icon="Lock"
+          :validate-event="false">
+        </el-input>
+      </el-form-item>
+    </el-form>
+
     <div class="other-link">
       <div class="register" @click="toRegister">注册</div>
       <div class="forget-password" @click="toForgetPassword">忘记密码</div>
     </div>
     <div>
-      <el-button type="primary" size="large" round>登录</el-button>
+      <el-button type="primary" size="large" round @click="login(formRef)"
+        >登录</el-button
+      >
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import {ref,onMounted} from "vue"
-import { ElInput, ElIcon, ElButton } from 'element-plus'
+import {ref,onMounted,reactive} from "vue"
+import { ElInput, ElButton, ElForm, ElFormItem, FormRules } from 'element-plus'
+import type { FormInstance } from "element-plus"
 import { useRouter } from "vue-router"
+import { Lock,User } from '@element-plus/icons-vue'
 import request from "@/utils/request"
 import ToggleDark from "@/components/ToggleDark.vue"
 import MyParticles from "@/components/MyParticles.vue"
+import { users } from "../../mock/user"
+import type { IUser } from '../../mock/type'
 
-const router =useRouter()
-const username = ref("")
-const password = ref("")
+const router = useRouter()
+const loginForm = reactive({
+  username: "leftover",
+  password: "123456",
+})
+const formRef = ref<FormInstance>()
+const login = (form: FormInstance | undefined) => {
+  if (!form) return
+  form.validateField("password", (isValid) => {
+    if (isValid) {
+      router.replace("/home")
+    } else {
+      loginForm.password = ''
+    }
+  })
+}
+const validateLoginForm = (rule: any, value: any, callback: any) => {
+  const isCorrect:boolean =users.some((user:IUser)=>user.username===loginForm.username&&value==='123456')
+  if (value === '') {
+    callback('请输入密码')
+  }else if(!isCorrect) {
+    callback('账户或密码错误')
+  } else {
+    callback()
+  }
+}
+const loginFormRules: FormRules = {
+  username: [{ required: true, message: '请输入用户名' }],
+  password: [
+    {validator:validateLoginForm}
+  ],
+}
 const toRegister = () => {
   router.push("/register")
 }
@@ -74,10 +120,10 @@ onMounted(() => {
     text-align: center;
   }
   .login-form-username {
-    margin-bottom:20px;
+    margin-bottom:30px;
   }
   .login-form-password {
-    margin-bottom:20px;
+    margin-bottom:30px;
   }
   .other-link {
     display:flex;
