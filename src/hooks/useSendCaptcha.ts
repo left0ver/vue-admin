@@ -1,11 +1,11 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-undef */
-import { Ref } from 'vue'
+import { Ref, ref } from 'vue'
 
 export default function useSendCaptcha(
-  isSend: Ref<Boolean>,
-  captchaBtnText: Ref<string>,
+  rowIsSend: Ref<Boolean> | Boolean,
+  rowCaptchaBtnText: Ref<string> | string,
 ) {
+  const isSend = ref(rowIsSend)
+  const captchaBtnText = ref(rowCaptchaBtnText)
   return () => {
     isSend.value = true
     let time = 60

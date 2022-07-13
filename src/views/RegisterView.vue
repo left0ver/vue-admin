@@ -69,7 +69,7 @@ const rules: FormRules = {
   ]
 }
 const registerAction = ():void => {
-  ElMessage.error({message: "没有注册功能，请使用测试账号进行登录",duration:5000})
+  ElMessage.error({message: "没有注册功能，请使用测试账号进行登录",duration:4000})
   router.push("/login")
 }
 </script>
