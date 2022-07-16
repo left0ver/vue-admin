@@ -1,19 +1,16 @@
 <template>
   <div>
+    <SvgIcon icon-class="bug" class="bug"></SvgIcon>
     <RouterView></RouterView>
   </div>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  data() {
-    return {
-    }
-  },
-})
-</script>
+<script lang="ts" setup></script>
 <style>
 @import "@/styles/normalize.css";
 </style>
-<style lang="less"></style>
+<style lang="less">
+
+.bug {
+ color:#f00
+}
+</style>
