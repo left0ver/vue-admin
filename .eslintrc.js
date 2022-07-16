@@ -30,6 +30,8 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-restricted-syntax': 'off',
     'vue/multi-word-component-names': 'off',
+    'no-use-before-define': 'off',
+    'no-param-reassign': 'off',
   },
   globals: {
     __WebpackModuleApi: 'writable',
