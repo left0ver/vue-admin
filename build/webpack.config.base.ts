@@ -64,6 +64,19 @@ const baseConfig: webpack.Configuration = {
             ],
           },
           {
+            test: /\.svg$/,
+            use: [
+              {
+                loader: 'svg-sprite-loader',
+                options: {
+                  symbolId: 'icon-[name]',
+                },
+              },
+              'svgo-loader',
+            ],
+            include: path.resolve(__dirname, '../src/icons/svg'),
+          },
+          {
             test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
             type: 'asset',
             parser: {
@@ -71,6 +84,8 @@ const baseConfig: webpack.Configuration = {
                 maxSize: 25 * 1024, // 25kb
               },
             },
+            // 排除掉icons目录下的图标，后面单独使用svg-sprite-loader进行处理
+            exclude: path.resolve(__dirname, '../src/icons/svg'),
           },
           {
             test: /\.(woff|woff2|eot|ttf|otf)$/i,

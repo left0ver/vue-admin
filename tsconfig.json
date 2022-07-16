@@ -13,10 +13,7 @@
     "sourceMap": true,
     "baseUrl": ".",
     "noEmit": true,
-    "types": [
-      // "webpack-env"
-      "node"
-    ],
+    "types": ["webpack-env", "node"],
     "paths": {
       "@/*": ["src/*"]
     },
