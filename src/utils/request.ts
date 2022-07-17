@@ -1,11 +1,13 @@
 import axios, { AxiosResponse } from 'axios'
-import { useRouter } from 'vue-router'
 import handleError from './handleError'
 import { getRefreshToken, getAccessToken, setAccessToken } from '@/utils/auth'
 import { authKey, noNeedTokenApi } from '@/settings'
+import router from '@/router'
 
+// 当第一个请求正在请求/auth/refresh的时候，后面如果有请求，则保存到该数组中
+// eslint-disable-next-line no-unused-vars
+let requests: Array<(token: string) => void> = []
 let refreshTokenTask: null | Promise<AxiosResponse<any, any>> = null
-
 // 使用记忆化的手段来保证只会同时调用一次refreshToken
 const refreshToken = () => {
   if (refreshTokenTask) return refreshTokenTask
@@ -16,16 +18,12 @@ const refreshToken = () => {
     }) as Promise<AxiosResponse<any, any>>
   return refreshTokenTask
 }
-// 当第一个请求正在请求/auth/refresh的时候，后面如果有请求，则保存到该数组中
-// eslint-disable-next-line no-unused-vars
-let requests: Array<(token: string) => void> = []
-const router = useRouter()
+
 const service = axios.create({
   // 你自己开发的时候可以设置baseUrl
-  // baseURL: process.env.BASE_URL,
+  baseURL: process.env.BASE_URL,
   timeout: 5000,
 })
-
 service.interceptors.request.use(
   config => {
     const token = getAccessToken()
@@ -50,7 +48,7 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   res => {
-    return res.data
+    return res
   },
   error => {
     // 任何失败的状态码都会触发error,你可以在这里进行错误的处理
@@ -95,4 +93,16 @@ service.interceptors.response.use(
     return Promise.reject(error)
   },
 )
+
+// service.prototype.request = async <T = any, D = any>(
+//   config: AxiosRequestConfig<D>,
+// ): Promise<T> => {
+//   try {
+//     const res = await service.request(config)
+//     return Promise.resolve(res.data)
+//   } catch (err) {
+//     return Promise.reject(err)
+//   }
+// }
+
 export default service

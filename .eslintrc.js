@@ -32,6 +32,7 @@ module.exports = {
     'vue/multi-word-component-names': 'off',
     'no-use-before-define': 'off',
     'no-param-reassign': 'off',
+    camelcase: 'off',
   },
   globals: {
     __WebpackModuleApi: 'writable',

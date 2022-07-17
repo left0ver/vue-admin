@@ -1,4 +1,4 @@
-export interface IUser {
+export interface User {
   id: number
   username: string
   phone: string
@@ -7,7 +7,6 @@ export interface IUser {
 }
 
 export interface Token {
-  id: number
   access_token: string
   refresh_token: string
 }
