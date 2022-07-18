@@ -2,6 +2,9 @@ import { defineStore } from 'pinia'
 import type { Token } from './type'
 
 export const useTokenStore = defineStore<'token', Token>('token', {
+  persist: {
+    enabled: true,
+  },
   state: () => ({
     access_token: '',
     refresh_token: '',

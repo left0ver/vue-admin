@@ -2,6 +2,9 @@ import { defineStore } from 'pinia'
 import { User } from './type'
 
 export const useUserInfoStore = defineStore<'userInfo', User>('userInfo', {
+  persist: {
+    enabled: true,
+  },
   state: () => ({
     id: -1,
     username: '',
