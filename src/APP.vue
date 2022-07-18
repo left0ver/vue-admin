@@ -1,6 +1,5 @@
 <template>
   <div>
-    <SvgIcon icon-class="bug" class="bug"></SvgIcon>
     <RouterView></RouterView>
   </div>
 </template>

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="hh">about</div>
   {{name}}--{{age}}--{{userInfo.doubleAge}}
   <button @click="increaseAge">+1</button>
@@ -28,4 +28,4 @@ position: relative;
 color: #f00;
 
 }
-</style>
+</style> -->

@@ -1,16 +1,18 @@
 import { defineStore } from 'pinia'
+import { User } from './type'
 
-export const userInfoStore = defineStore('userInfo', {
+export const useUserInfoStore = defineStore<'userInfo', User>('userInfo', {
   state: () => ({
-    name: 'zwc',
-    age: 18,
+    id: -1,
+    username: '',
+    phone: '',
+    name: '',
+    roles: [],
   }),
-  getters: {
-    doubleAge: state => state.age * 2,
-  },
+  getters: {},
   actions: {
-    increaseAge() {
-      this.age += 1
+    updateRoles(newRoles: string[]) {
+      this.roles = newRoles
     },
   },
 })

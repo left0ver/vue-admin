@@ -1,3 +1,4 @@
-import { userInfoStore } from './userInfo'
+import { useUserInfoStore } from './userInfo'
+import { useTokenStore } from './token'
 
-export { userInfoStore }
+export { useUserInfoStore, useTokenStore }

@@ -1,5 +1,5 @@
 import Mock from 'mockjs'
-import type { IUser } from './type'
+import type { IUser } from '../type'
 
 export const users: IUser[] = Mock.mock([
   {
