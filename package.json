@@ -7,7 +7,8 @@
     "*.css",
     "*.less",
     "*.scss",
-    "*.vue"
+    "*.vue",
+    "./src/utils/permissionControl.ts"
   ],
   "husky": {
     "hooks": {

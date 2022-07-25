@@ -1,9 +1,16 @@
+/* eslint-disable no-unused-vars */
+// eslint-disable-next-line no-shadow
+export enum Roles {
+  ADMIN = 'admin',
+  LEFTOVER = 'leftover',
+  TEACHER = 'teacher',
+}
 export interface IUser {
   id: number
   username: string
   phone: string
   name: string
-  roles: string[]
+  roles: Roles[]
 }
 
 export interface Token {

@@ -43,6 +43,20 @@
     </div>
   </div>
 </template>
+<script lang="ts">
+const { sessionTimeout } = useTokenStore()
+export default {
+  beforeRouteEnter(to, from, next) {
+    // 你可以在这之前向后端请求接口，判断会话有没有过期
+    if (!sessionTimeout) {
+      next("/home")
+    } else {
+      reset()
+      next()
+    }
+  }
+}
+</script>
 
 <script lang="ts" setup>
 import { ref, onMounted, reactive } from "vue"
@@ -50,18 +64,26 @@ import { ElInput, ElButton, ElForm, ElFormItem, FormRules } from 'element-plus'
 import type { FormInstance } from "element-plus"
 import { useRouter } from "vue-router"
 import { Lock, User } from '@element-plus/icons-vue'
-import type {Token} from '@/store/type'
+import type { Token } from '@/store/type'
 import request from "@/utils/request"
 import ToggleDark from "@/components/ToggleDark.vue"
 import MyParticles from "@/components/MyParticles.vue"
 import { users } from "../../mock/models/user"
 import { setAccessToken, setRefreshToken } from "@/utils/auth"
-import {useTokenStore,useUserInfoStore} from '@/store'
-import type {IUser} from "../../mock/type"
+import { useTokenStore, useUserInfoStore } from '@/store'
+import { reset } from '@/utils/reset'
+import {Roles} from '@/type'
 
+interface IUser {
+  id: number
+  username: string
+  phone: string
+  name: string
+  roles: Roles[]
+}
 const router = useRouter()
 const userInfoStore = useUserInfoStore()
-const tokenStore =useTokenStore()
+const tokenStore = useTokenStore()
 const loginForm = reactive({
   username: "leftover",
   password: "123456",
@@ -71,17 +93,14 @@ const login = (form: FormInstance | undefined) => {
   if (!form) return
   form.validateField("password", async (isValid) => {
     if (isValid) {
-      const rowTokenData = await request.post<{code:number,data:Token,errMsg?:string}>("/login", { username: loginForm.username, password: loginForm.password })
-      // setAccessToken(rowTokenData.data.data.access_token)
+      const rowTokenData = await request.post<{ code: number, data: Token, errMsg?: string }>("/login", { username: loginForm.username, password: loginForm.password })
       setAccessToken(rowTokenData.data.data.access_token)
-      // setRefreshToken(rowTokenData.data.data.refresh_token)
       setRefreshToken(rowTokenData.data.data.refresh_token)
-      const userInfo = await request.get<{code:number,data?:IUser,errMsg?:string}>("/userInfo")
+      const userInfo = await request.get<{ code: number, data?: IUser, errMsg?: string }>("/userInfo")
       if (userInfo.data.code === 1) {
-        // TODO： 把token和userInfo存在pinia中
         userInfoStore.$patch({ ...userInfo.data.data })
-        tokenStore.$patch({...rowTokenData.data.data})
-         router.replace("/home")
+        tokenStore.$patch({ ...rowTokenData.data.data })
+        router.replace("/home")
       }
     }
   })
@@ -96,6 +115,7 @@ const validateLoginForm = (rule: any, value: any, callback: any) => {
     callback()
   }
 }
+
 const loginFormRules: FormRules = {
   username: [{ required: true, message: '请输入用户名' }],
   password: [
@@ -108,6 +128,7 @@ const toRegister = () => {
 const toForgetPassword = () => {
   router.push("/forget")
 }
+
 onMounted(() => {
   // request.service()
   // request.get("/vue-admin/user").then((res) => {

@@ -78,7 +78,7 @@ import {useRouter} from 'vue-router'
 import ToggleDark from "@/components/ToggleDark.vue"
 import MyParticles from "@/components/MyParticles.vue"
 import LoginLink from "@/components/LoginLink.vue"
-import useSendCaptcha from "@/hooks/useSendCaptcha"
+import {useSendCaptcha} from "@/hooks"
 
 const router = useRouter()
 const forgetPasswordForm = reactive({ username: "", phone: "", newPassword: "", checkPassword: "", isSend: false, captchaCode: "" })

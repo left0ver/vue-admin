@@ -1,5 +1,6 @@
 import Mock from 'mockjs'
 import type { IUser } from '../type'
+import { Roles } from '../type'
 
 export const users: IUser[] = Mock.mock([
   {
@@ -7,20 +8,20 @@ export const users: IUser[] = Mock.mock([
     username: 'leftover',
     phone: '12345678901',
     name: '@first',
-    roles: ['test'],
+    roles: [Roles.LEFTOVER],
   },
   {
     id: 2,
     username: 'admin',
     phone: '12345678901',
     name: '@first',
-    roles: ['admin'],
+    roles: [Roles.ADMIN],
   },
   {
     id: 3,
     username: 'teacher',
     phone: '12345678901',
     name: '@first',
-    roles: ['teacher'],
+    roles: [Roles.TEACHER],
   },
 ])

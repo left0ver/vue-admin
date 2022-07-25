@@ -1,6 +1,20 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { Roles } from '@/type'
 
-const routes: Array<RouteRecordRaw> = [
+declare module 'vue-router' {
+  // eslint-disable-next-line no-unused-vars
+  interface RouteMeta {
+    // 是可选的
+    roles?: Roles[]
+    hidden?: boolean
+    breadcrumb?: boolean
+    title?: string
+    icon?: string
+    activeMenu?: boolean
+  }
+}
+
+export const constantRoutes: Array<RouteRecordRaw> = [
   {
     path: '/',
     redirect: '/login',
@@ -8,9 +22,6 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/login',
     name: 'login',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "login" */ '../views/LoginView.vue'),
   },
@@ -42,9 +53,25 @@ const routes: Array<RouteRecordRaw> = [
   },
 ]
 
+export const asyncRoutes: Array<RouteRecordRaw> = [
+  {
+    path: '/leftover',
+    name: 'leftover',
+    component: () =>
+      import(/* webpackChunkName: "leftover" */ '../views/LeftoverView.vue'),
+    meta: {
+      roles: [Roles.LEFTOVER],
+      hidden: false,
+      breadcrumb: true,
+      title: 'Leftover',
+      icon: 'bug',
+    },
+  },
+]
+
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes: constantRoutes,
 })
 
 export default router

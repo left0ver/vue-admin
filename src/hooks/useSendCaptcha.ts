@@ -1,6 +1,6 @@
 import { Ref, ref } from 'vue'
 
-export default function useSendCaptcha(
+export function useSendCaptcha(
   rowIsSend: Ref<Boolean> | Boolean,
   rowCaptchaBtnText: Ref<string> | string,
 ) {
