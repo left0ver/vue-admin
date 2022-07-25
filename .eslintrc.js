@@ -33,6 +33,8 @@ module.exports = {
     'no-use-before-define': 'off',
     'no-param-reassign': 'off',
     camelcase: 'off',
+    'vue/no-export-in-script-setup': 'off',
+    'import/first': 'off',
   },
   globals: {
     __WebpackModuleApi: 'writable',

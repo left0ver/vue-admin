@@ -7,6 +7,7 @@ import router from './router'
 import App from './APP.vue'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import { registerIcon, importAllSvg } from '@/icons'
+import './utils/permissionControl'
 
 const pinia = createPinia()
 pinia.use(piniaPersist)
@@ -18,4 +19,4 @@ importAllSvg()
 registerIcon(app)
 app.use(Particles)
 
-app.use(router).use(pinia).mount('#app')
+app.use(pinia).use(router).mount('#app')

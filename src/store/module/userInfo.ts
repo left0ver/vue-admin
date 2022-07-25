@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia'
-import { User } from './type'
+import { User } from '../type'
+import { Roles } from '@/type'
 
-export const useUserInfoStore = defineStore<'userInfo', User>('userInfo', {
+export const useUserInfoStore = defineStore('userInfo', {
   persist: {
     enabled: true,
   },
-  state: () => ({
+  state: (): User => ({
     id: -1,
     username: '',
     phone: '',
@@ -14,7 +15,7 @@ export const useUserInfoStore = defineStore<'userInfo', User>('userInfo', {
   }),
   getters: {},
   actions: {
-    updateRoles(newRoles: string[]) {
+    updateRoles(newRoles: Roles[]) {
       this.roles = newRoles
     },
   },

@@ -1,12 +1,10 @@
 import express from 'express'
 import { users } from '../models/user'
 import { tokens } from '../models/token'
-import { authKey } from '../../src/settings'
 
 const userRouter = express.Router()
-
 userRouter.get('/userInfo', (req, res) => {
-  const token = req.headers[authKey]
+  const token = req.headers.authorization
   if (token !== undefined) {
     const index = tokens.findIndex(item => item.access_token === token)
     if (index !== -1) {

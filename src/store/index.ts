@@ -1,4 +1,5 @@
-import { useUserInfoStore } from './userInfo'
-import { useTokenStore } from './token'
+import { useUserInfoStore } from './module/userInfo'
+import { useTokenStore } from './module/token'
+import { useRoutesStore } from './module/routes'
 
-export { useUserInfoStore, useTokenStore }
+export { useUserInfoStore, useTokenStore, useRoutesStore }
