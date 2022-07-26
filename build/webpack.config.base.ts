@@ -4,6 +4,9 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { VueLoaderPlugin } from 'vue-loader'
 import ElementPlus from 'unplugin-element-plus/webpack'
 import Dotenv from 'dotenv-webpack'
+import AutoImport from 'unplugin-auto-import/webpack'
+import Components from 'unplugin-vue-components/webpack'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // 网站title
 const websiteTitle = 'vue-admin'
@@ -120,6 +123,13 @@ const baseConfig: webpack.Configuration = {
     new ProgressPlugin(),
     // 通用的环境变量，在.env文件中配置,使用process.env.your_env_variable来访问
     new Dotenv(),
+    // element-ui组件自动导入
+    AutoImport({
+      resolvers: [ElementPlusResolver()],
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()],
+    }),
   ],
 }
 
