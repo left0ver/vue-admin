@@ -7,7 +7,7 @@ import router from './router'
 import App from './APP.vue'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import { registerIcon, importAllSvg } from '@/icons'
-import './utils/permissionControl'
+import './permissionControl'
 
 const pinia = createPinia()
 pinia.use(piniaPersist)

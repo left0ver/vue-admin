@@ -5,6 +5,8 @@ import { VueLoaderPlugin } from 'vue-loader'
 import ElementPlus from 'unplugin-element-plus/webpack'
 import Dotenv from 'dotenv-webpack'
 
+// 网站title
+const websiteTitle = 'vue-admin'
 const baseConfig: webpack.Configuration = {
   entry: path.resolve(__dirname, '../src', 'main.ts'),
   // target: 'browserslist',
@@ -106,7 +108,7 @@ const baseConfig: webpack.Configuration = {
     new HtmlWebpackPlugin({
       filename: path.resolve(__dirname, '../dist', 'index.html'),
       // 网站title
-      title: 'vue-admin',
+      title: websiteTitle,
       // 你可以将minify 设置为true，将会压缩打包之后的html文件
       minify: true,
       inject: 'body',

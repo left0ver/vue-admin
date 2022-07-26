@@ -5,7 +5,6 @@ import { useUserInfoStore, useRoutesStore } from '@/store'
 import request from '@/utils/request'
 import { getAccessToken } from '@/utils/auth'
 
-// TODO:token时效性的问题，退出之后重新进去token还在不在
 router.beforeEach((to, from, next) => {
   const userInfoStore = useUserInfoStore()
   const routesStore = useRoutesStore()
