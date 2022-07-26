@@ -12,7 +12,7 @@ router.beforeEach((to, from, next) => {
   // 有token
   if (token !== '') {
     if (to.path === loginPage) {
-      return next('/home')
+      return next('/')
     }
     // 没有角色
     if (userInfoStore.roles.length === 0) {
@@ -37,6 +37,8 @@ router.beforeEach((to, from, next) => {
     return next()
   }
   // 没有token
+  console.log(whiteList)
+
   if (whiteList.includes(to.path)) {
     return next()
   }

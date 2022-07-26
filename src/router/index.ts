@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import { Roles } from '@/type'
+import Layout from '@/layout/index.vue'
 
 declare module 'vue-router' {
   // eslint-disable-next-line no-unused-vars
@@ -15,10 +16,6 @@ declare module 'vue-router' {
 }
 
 export const constantRoutes: Array<RouteRecordRaw> = [
-  {
-    path: '/',
-    redirect: '/login',
-  },
   {
     path: '/login',
     name: 'login',
@@ -46,10 +43,19 @@ export const constantRoutes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
   },
   {
-    path: '/home',
-    name: 'home',
-    component: () =>
-      import(/* webpackChunkName: "home" */ '../views/HomeView.vue'),
+    path: '/',
+    component: Layout,
+    redirect: '/dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        name: 'dashboard',
+        component: () =>
+          import(
+            /* webpackChunkName: "dashboard" */ '../views/DashBoardView.vue'
+          ),
+      },
+    ],
   },
 ]
 

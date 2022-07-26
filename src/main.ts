@@ -12,6 +12,7 @@ import './permissionControl'
 const pinia = createPinia()
 pinia.use(piniaPersist)
 const app = createApp(App)
+// 全局注册element的图标组件
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }

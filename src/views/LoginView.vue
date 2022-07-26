@@ -59,7 +59,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { ref, onMounted, reactive } from "vue"
+import { ref, reactive } from "vue"
 import { ElInput, ElButton, ElForm, ElFormItem, FormRules } from 'element-plus'
 import type { FormInstance } from "element-plus"
 import { useRouter } from "vue-router"
@@ -100,7 +100,7 @@ const login = (form: FormInstance | undefined) => {
       if (userInfo.data.code === 1) {
         userInfoStore.$patch({ ...userInfo.data.data })
         tokenStore.$patch({ ...rowTokenData.data.data })
-        router.replace("/home")
+        router.replace("/")
       }
     }
   })
@@ -128,13 +128,6 @@ const toRegister = () => {
 const toForgetPassword = () => {
   router.push("/forget")
 }
-
-onMounted(() => {
-  // request.service()
-  // request.get("/vue-admin/user").then((res) => {
-  //   console.log(res)
-  // })
-})
 </script>
 <style lang="less" scoped>
 @import "@/styles/minix.less";
