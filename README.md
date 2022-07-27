@@ -8,6 +8,14 @@ vue-admin 是一个基于 vue3+typescript+pinia 的后台管理系统,其设计�
 
 vue-admin 整个项目是从 0 开始搭建的，没有使用脚手架工具，所以如果你发现打包或者其他方面有问题，欢迎您的 [issue](https://github.com/left0ver/vue-admin/issues)
 
+# Usage
+
+```shell
+git clone --depth=1 https://github.com/left0ver/vue-admin.git
+
+# or  you can fork this repository
+```
+
 # Feature
 
 - [x] pinia 数据持久化
