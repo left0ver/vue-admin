@@ -105,7 +105,7 @@ const baseConfig: webpack.Configuration = {
     alias: {
       '@': [path.resolve(__dirname, '../src')],
     },
-    extensions: ['.vue', '.ts', '.tsx', '.js'],
+    extensions: ['.vue', '.ts', '.tsx', '.js', '.less'],
   },
   plugins: [
     new HtmlWebpackPlugin({

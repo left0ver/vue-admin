@@ -41,14 +41,14 @@ const toHome = () => {
 
 <style lang="less" scoped>
 @import "@/styles/minix.less";
+@import "@/styles/variables.less";
 
 .header-wrap {
   .flex-center();
   justify-content: space-between;
-  width: 100%;
+  width: 95%;
+  margin: 0 auto;
   padding: 20px 0;
-
-
   .header-left.website-info {
     .flex-center();
     cursor: pointer;
@@ -67,7 +67,7 @@ const toHome = () => {
       margin-left:15px;
     }
     .logout-container {
-  margin-left:15px;
+     margin-left:15px;
     }
   }
 }

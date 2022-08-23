@@ -22,6 +22,7 @@ git clone --depth=1 https://github.com/left0ver/vue-admin.git
 - [x] 权限控制
 - [x] 登录注册
 - [x] axios 拦截器的封装
+- [ ] 按钮级别的权限控制
 - [ ] 首页面包屑
 - [ ] 侧边栏
 - [ ] 404 页面

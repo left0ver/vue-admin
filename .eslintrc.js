@@ -35,6 +35,7 @@ module.exports = {
     camelcase: 'off',
     'vue/no-export-in-script-setup': 'off',
     'import/first': 'off',
+    'no-shadow': 'off',
   },
   globals: {
     __WebpackModuleApi: 'writable',
