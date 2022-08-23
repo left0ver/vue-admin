@@ -5,7 +5,7 @@ import { useUserInfoStore, useRoutesStore } from '@/store'
 import request from '@/utils/request'
 import { getAccessToken } from '@/utils/auth'
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const userInfoStore = useUserInfoStore()
   const routesStore = useRoutesStore()
   const token = getAccessToken()
@@ -17,28 +17,31 @@ router.beforeEach((to, from, next) => {
     // 没有角色
     if (userInfoStore.roles.length === 0) {
       // 请求用户信息的接口
-      request
-        .get<{ code: number; data?: IUser; errMsg?: string }>('/userInfo')
-        .then(res => {
-          if (res.data.code === 1) {
-            userInfoStore.$patch({ ...res.data.data })
-            routesStore.generatorRoutes(userInfoStore.roles)
-            return next()
-          }
-          // 获取用户信息失败
-          return next(false)
-        })
-        .catch(() => {
-          return next(false)
-        })
+      try {
+        const rowUserInfo = await request.get<{
+          code: number
+          data?: IUser
+          errMsg?: string
+        }>('/userInfo')
+        if (rowUserInfo.data.code === 1) {
+          userInfoStore.$patch({ ...rowUserInfo.data.data })
+          routesStore.generatorRoutes(userInfoStore.roles)
+          return next()
+        }
+        // 获取用户信息失败
+        return next(false)
+      } catch (error) {
+        return next(false)
+      }
     }
     // 有角色,生成动态路由
-    routesStore.generatorRoutes(userInfoStore.roles)
+    const routes = await routesStore.generatorRoutes(userInfoStore.roles)
+    for (const route of routes) {
+      router.addRoute(route)
+    }
     return next()
   }
   // 没有token
-  console.log(whiteList)
-
   if (whiteList.includes(to.path)) {
     return next()
   }

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
 import { asyncRoutes, constantRoutes } from '@/router'
 import { Roles } from '@/type'
 
@@ -30,14 +30,22 @@ export const useRoutesStore = defineStore('routes', {
     addRoutes: [],
   }),
   actions: {
-    generatorRoutes(roles: Roles[]): void {
-      const dynamicRoutes: RouteRecordRaw[] = []
-      for (let i = 0; i < asyncRoutes.length; i++) {
-        if (hasPermission(asyncRoutes[i], roles)) {
-          dynamicRoutes.push(asyncRoutes[i])
+    generatorRoutes(roles: Roles[]): Promise<RouteRecordRaw[]> {
+      return new Promise(resolve => {
+        const dynamicRoutes: RouteRecordRaw[] = []
+        for (let i = 0; i < asyncRoutes.length; i++) {
+          if (hasPermission(asyncRoutes[i], roles)) {
+            dynamicRoutes.push(asyncRoutes[i])
+          }
         }
-      }
-      this.routes.push(...constantRoutes, ...dynamicRoutes)
+        if (this.addRoutes.length === 0) {
+          this.addRoutes = dynamicRoutes
+        }
+        if (this.routes.length === 0) {
+          this.routes.push(...constantRoutes, ...dynamicRoutes)
+        }
+        resolve(this.routes)
+      })
     },
   },
 })

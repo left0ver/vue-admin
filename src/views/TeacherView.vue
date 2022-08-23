@@ -1,5 +1,5 @@
 <template>
-  <div>menu</div>
+  <div>teacher才能看到的页面</div>
 </template>
 
 <script lang="ts" setup></script>
